@@ -1,6 +1,6 @@
 # PatchmatchNet (CVPR2021 Oral)
 official source code of paper 'PatchmatchNet: Learned Multi-View Patchmatch Stereo'
-![](imgs/structure_teaser.jpg)
+![](../imgs/structure_teaser.jpg)
 
 ## Updates
 - 19.05.2025: For those who want to reproduce the same results as our paper, please have a look at [this version](https://github.com/FangjinhuaWang/PatchmatchNet/tree/c6d2dce962be8109779afcdb3b79880d35ff9c83). The current checkpoint is re-trained by other contributors. 
