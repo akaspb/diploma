@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import argparse
 import re
+from typing import Union
 
 
 def read_pfm(file_name: str) -> np.ndarray:
@@ -32,7 +33,7 @@ def RMSElog(x, y, mask):
     return np.mean((np.log(x) - np.log(y))**2)**0.5
 
 
-def show(input_folder: str, output_folder: str, image_idx: int):
+def show(input_folder: str, output_folder: str, image_idx: int, plot_save_file: Union[None, str] = None):
     file_name = "{:0>8}".format(image_idx)
 
     ref_image = np.array(Image.open(f'{input_folder}images/{file_name}.jpg'))
@@ -61,17 +62,31 @@ def show(input_folder: str, output_folder: str, image_idx: int):
     axs[3].axis('off')
 
     plt.tight_layout()
+
+    if plot_save_file is not None:
+        plt.savefig(plot_save_file)
+
     plt.show()
 
     print('RMSE log:', RMSElog(depth_gt, depth_est, mask))
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--input_folder", type=str, help="input data path")
     parser.add_argument("--output_folder", type=str, help="output path")
-    parser.add_argument("--image_idx", type=int, help="reference image index")
+    parser.add_argument("--image_idx", type=int, help="image index")
+    parser.add_argument("--save", type=str, default="", help="save demonstration to file")
 
     input_args = parser.parse_args()
-    show(input_args.input_folder, input_args.output_folder, input_args.image_idx)
+
+    if input_args.save == "":
+        show(input_args.input_folder, input_args.output_folder, input_args.image_idx)
+        return
+
+    show(input_args.input_folder, input_args.output_folder, input_args.image_idx, input_args.save)
+
+
+if __name__ == "__main__":
+    main()

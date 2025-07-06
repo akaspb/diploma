@@ -26,3 +26,8 @@ python eval.py --input_folder dtu/scan1/ --output_folder dtu_evalled/scan1/ --ch
 ```
 python diploma/show.py --input_folder dtu/scan1/ --output_folder dtu_evalled/scan1/ --image_idx 0
 ```
+
+Можно добавить сохранение получаемых диаграмм:
+```
+python diploma/show.py --input_folder dtu/scan1/ --output_folder dtu_evalled/scan1/ --image_idx 0 --save=examples/scan1_0_0.png
+```
